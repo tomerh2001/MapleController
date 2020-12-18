@@ -1,0 +1,48 @@
+{
+  "install_origin": "steam",
+  "world": "burning",
+  "PIC": "tomergt45",
+  "attempt_restart_after_crash": true,
+  
+  "attack": "d",
+  "attack_interval": 0.25,
+  "attack_repeat": 8,
+
+  "right": "right",
+  "left": "left",
+  "up": "up",
+  "hold_up": true,
+  "jump": "alt",
+  "doublejump": true,
+
+  "hp_potion": "delete",
+  "mana_potion": "home",
+  "potions_per_use": 2,
+  "delay_per_potion": 1,
+  "pet_food": "end",
+  "pet_food_period": 100,
+  
+  "change_channel_period": 600,
+  "change_direction_period": 10,
+
+  "buffs_period": 50,
+  "buffs": ["1", "2", "3", "4", "5", "6"],
+  "buffs_interval": 2,
+
+  "skills_interval": 0.25,
+  "skills": [
+    {
+      "key": "s",
+      "period": 20
+    },
+    {
+      "key": "f",
+      "period": 5,
+      "hold": 5
+    },
+    {
+      "key": "a",
+      "period": 5
+    }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+  "install_origin": "steam",
+  "world": "bera",
+  "PIC": "tomergt45",
+  "attempt_restart_after_crash": true,
+
+  "right": "right",
+  "left": "left",
+  "up": "up",
+  "hold_up": true,
+  "jump": "alt",
+  "doublejump": true,
+
+  "hp_potion": "delete",
+  "mana_potion": "delete",
+  "pet_food": "end",
+  "pet_food_period": 100,
+
+  "change_channel_period": 600,
+  "change_direction_period": 10,
+
+  "attack": "d",
+  "attack_interval": 0.25,
+  "attack_repeat": 8,
+  "buffs_period": 50,
+  "buffs": ["1", "2", "3"],
+  "buffs_interval": 0.5,
+
+  "skills_interval": 0.25,
+  "skills": [
+    {
+      "key": "shift",
+      "period": 5
+    },
+    {
+      "key": "c",
+      "period": 90,
+      "hold": 2
+    },
+    {
+      "key": "x",
+      "period": 120,
+      "hold": 8
+    },
+    {
+      "key": "s",
+      "period": 118
+    },
+    {
+      "key": "r",
+      "period": 63
+    },
+    {
+      "key": "9",
+      "period": 25
+    }
+ ],
+
+ "login_skills_interval": 0.25,
+ "login_skills": [
+  {
+    "key": "1"
+  }
+]
+}
