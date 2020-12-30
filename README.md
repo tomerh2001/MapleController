@@ -1,7 +1,7 @@
 # AFK Bot
 A less-detectable, easy to use MapleStory bot using fancy computer vision and clever coding. Train while you're AFK, farm mesos, boost main/secondary characters and more!
 
-**Note: this is not cheats by any means, this bot does not access the game memory data or files.**
+**Note: this is not cheats by any means, this bot does not access the game's memory data or files.**
 
 ## Download
 A download link will be added in the near future.
