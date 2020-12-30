@@ -1,0 +1,49 @@
+{
+  "install_origin": "steam",
+  "world": "bera",
+  "PIC": "tomergt45",
+  "hold_up": false,
+  "right": "right",
+  "left": "left",
+  "up": "up",
+  "down": "down",
+  "jump": "alt",
+  "hp_potion": "delete",
+  "mana_potion": "delete",
+  "pet_food": "end",
+  "attack": "d",
+  "buffs": ["2", "3", "4", "5", "6", "7", "8", "9", "0"],
+  "skills": [
+    {
+      "key": "shift",
+      "period": 5
+    },
+    {
+      "key": "c",
+      "period": 90,
+      "hold": 2
+    },
+    {
+      "key": "x",
+      "period": 120,
+      "hold": 8
+    },
+    {
+      "key": "s",
+      "period": 118
+    },
+    {
+      "key": "r",
+      "period": 63
+    },
+    {
+      "key": "PageUp",
+      "period": 2000
+    }
+ ],
+ "spawn_skills": [
+  {
+    "key": "1"
+  }
+]
+}
