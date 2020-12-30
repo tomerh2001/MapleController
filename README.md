@@ -29,7 +29,9 @@ A download link will be added in the near future.
 This is because when maplestory is launched, you are prompted with an admin privileges dialog, this dialog cannot be accepeted via code so in order to automate the process you'll need to disable it while using the bot.
 
 Search "UAC" in the windows search
-![alt text](https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/UAC1.png)
+
+<img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/UAC1.png" alt="alt text" width="500" height="500">
 
 Set it to "Never notify me ..."
-![alt text](https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/UAC2.png)
+
+<img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/UAC2.png" alt="alt text" width="500" height="500">
