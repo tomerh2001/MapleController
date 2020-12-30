@@ -23,8 +23,7 @@ A download link will be added in the near future.
 
 ## Setup
 1. While using the bot, maplestory MUST be on 800x600 (4:3) windowed
-
-![alt text](https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/Resolution.png)
+<img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/Resolution.png" alt="alt text" width="500" height="500">
 
 2. Disable UAC (only if you use the auto restart feature).
 This is because when maplestory is launched, you are prompted with an admin privileges dialog, this dialog cannot be accepeted via code so in order to automate the process you'll need to disable it while using the bot.
