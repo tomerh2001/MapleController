@@ -28,10 +28,10 @@ A download link will be added in the near future.
 2. Disable UAC (only if you use the auto restart feature).
 This is because when maplestory is launched, you are prompted with an admin privileges dialog, this dialog cannot be accepeted via code so in order to automate the process you'll need to disable it while using the bot.
 
-Search "UAC" in the windows search
+- Search "UAC" in the windows search
 
-<img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/UAC1.png" alt="alt text" width="500" height="500">
+  <img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/UAC1.png" alt="alt text" width="500" height="500">
 
-Set it to "Never notify me ..."
+- Set it to "Never notify me ..."
 
-<img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/UAC2.png" alt="alt text" width="500" height="500">
+  <img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/UAC2.png" alt="alt text" width="500" height="500">
