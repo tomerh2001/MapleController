@@ -13,7 +13,6 @@ Name | Type | Description | Default
 `toggle_pause` | Boolean | The key used to toggle in and out of pause mode | `f5`
 `attempt_restart_after_crash` | Boolean | Indication if to attempt restart when the game crashes | `true`
 `hyper_teleport` | Boolean | Indication if to attempt to teleport back to the training region after death (using an hyper teleport rock) | `true`
-`console_update_period` | Number | The period of which to update the console statistics | 60 (1 minute)
 `move_mode` | String | The mode of the movement, can be either `hold` or `teleport` | `hold`
 `right` | String | The key of your right movement |
 `left` | String | The key of your left movement |
