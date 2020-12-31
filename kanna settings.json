@@ -3,7 +3,6 @@
   "world": "bera",
   "PIC": "tomergt45",
   "pause": "f5",
-  "console_update_period": 300,
   "move_mode": "teleport",
   "right": "right",
   "left": "left",
