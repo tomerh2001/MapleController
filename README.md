@@ -18,7 +18,11 @@ A download link will be added in the near future.
 - Activate ruins
 - Teleport back after death (using hyper teleport rock)
 - Settings per character
-- Kanna follower (Still in development)
+
+### Upcoming features
+- Kanna follower
+- In-game overlay
+- Email notifications
 - And much, much more!
 
 ## Setup
