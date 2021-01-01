@@ -30,7 +30,7 @@ A download link will be added in the near future.
 
 <img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/Download folder.png" alt="alt text">
 
-- Open the `settings.json` file, this file will contain all the insutrctions for the bot, make sure to adjust everything according to your character, if you plan on using the bot with multiple characters than create a `.json` file for each character and name it accordingly, for example `Kanna Settings.json`, `Shade Settings.json`, etc...
+- Open the `settings.json` file, this file will contain all the insutrctions for the bot, make sure to adjust everything according to your character, if you plan on using the bot with multiple characters then create a `.json` file for each character and name it accordingly, for example `Kanna Settings.json`, `Shade Settings.json`, etc...
 
 - By default the `settings.json` that you download will contain only the default parameters and would look something like that:
 
@@ -54,8 +54,9 @@ A download link will be added in the near future.
 }
 ```
 
-- You can add more parameters to customize the bot's behavior, for example add periodical skills, spawn skills, interval between attacks, num. of attacks, and MUCH MORE.
+- You can add more parameters to customize the bot's behavior, for example add periodic skills, spawn skills, interval between attacks, num. of attacks, and MUCH MORE.
 You can find all the other parameters here: https://github.com/tomergt45/MapleController/blob/main/docs/Controller%20Settings.md
+
 - Make sure to edit all the parameters according to your character keys and behavior (i.e. animation time, etc...)
 
 2. While using the bot, maplestory MUST be on 800x600 (4:3) windowed
