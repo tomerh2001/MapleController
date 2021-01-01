@@ -53,6 +53,10 @@ A download link will be added in the near future.
 }
 ```
 
+- You can add more parameters to customize the bot's behavior, for example add periodical skills, spawn skills, interval between attacks, num. of attacks, and MUCH MORE.
+You can find all the other parameters here: https://github.com/tomergt45/MapleController/blob/main/docs/Controller%20Settings.md
+
+- Make sure to edit all the parameters according to your character keys, and behavior (i.e. animation time, etc...)
 
 2. While using the bot, maplestory MUST be on 800x600 (4:3) windowed
 <img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/Resolution.png" alt="alt text" width="500" height="500">
