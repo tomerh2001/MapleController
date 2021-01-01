@@ -14,7 +14,7 @@ A download link will be added in the near future.
 - Activate buffs periodically
 - Take potions (HP, MP & Pet)
 - Change channels
-- Avoide players (by changing channel, to ensure not getting reported)
+- Avoid players (by changing channel, to ensure not getting reported)
 - Activate ruins
 - Teleport back after death (using hyper teleport rock)
 - Settings per character
