@@ -79,7 +79,7 @@ This is because when maplestory is launched, you are prompted with an admin priv
 
 <img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/Json selection.png" alt="alt text">
 
-- Otherwise, if you only have one `.json` file in that folder then this file would automatically be selected
+- Otherwise, if you only have one `.json` file in that folder then this file will automatically be selected
 
 - After selecting the `.json` file the bot would take control over your PC and start playing MapleStory
 
