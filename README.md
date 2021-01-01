@@ -32,7 +32,7 @@ A download link will be added in the near future.
 
 - Open the `settings.json` file, this file will contain all the insutrctions for the bot, make sure to adjust everything according to your character, if you plan on using the bot with multiple characters than create a `.json` file for each character and name it accordingly, for example `Kanna Settings.json`, `Shade Settings.json`, etc...
 
-- By default the `settings.json` that you download will contain only the default parameters and would look like that:
+- By default the `settings.json` that you download will contain only the default parameters and would look something like that:
 
 ```
 {
@@ -50,13 +50,13 @@ A download link will be added in the near future.
   "pet_food": "end",
   "attack": "d",
   "buffs": [],
+  "skills": []
 }
 ```
 
 - You can add more parameters to customize the bot's behavior, for example add periodical skills, spawn skills, interval between attacks, num. of attacks, and MUCH MORE.
 You can find all the other parameters here: https://github.com/tomergt45/MapleController/blob/main/docs/Controller%20Settings.md
-
-- Make sure to edit all the parameters according to your character keys, and behavior (i.e. animation time, etc...)
+- Make sure to edit all the parameters according to your character keys and behavior (i.e. animation time, etc...)
 
 2. While using the bot, maplestory MUST be on 800x600 (4:3) windowed
 <img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/Resolution.png" alt="alt text" width="500" height="500">
@@ -71,3 +71,13 @@ This is because when maplestory is launched, you are prompted with an admin priv
 - Set it to "Never notify me ..."
 
   <img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/UAC2.png" alt="alt text" width="500" height="500">
+  
+ 4. After you finish with your `.json` files and steps 2 & 3, launch the `bot.exe` file as administrator and wait for it to load
+
+- If you have have mutliple `.json` files, you'll be prompted to select which file you wanna use
+
+- If you have only one `.json` file in that folder than this file would automatically be selected
+
+- After selecting the `.json` file the bot would take control over your PC
+
+- You can now go to sleep
