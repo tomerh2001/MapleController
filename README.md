@@ -76,7 +76,7 @@ This is because when maplestory is launched, you are prompted with an admin priv
 
 - If you have have mutliple `.json` files, you'll be prompted to select which file you wanna use
 
-<img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/Json selection.png" alt="alt text">
+<img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/Json selection.png" alt="alt text" width="200" height="200">
 
 - Otherwise, if you only have one `.json` file in that folder than this file would automatically be selected
 
