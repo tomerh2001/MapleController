@@ -18,14 +18,50 @@ A download link will be added in the near future.
 - Activate ruins
 - Teleport back after death (using hyper teleport rock)
 - Settings per character
-- Kanna follower (Still in development)
+
+### Upcoming features
+- Kanna follower
+- In-game overlay
+- Email notifications
 - And much, much more!
 
 ## Setup
-1. While using the bot, maplestory MUST be on 800x600 (4:3) windowed
+1. Download the files using the download link above and extract all of them into the same folder
+
+<img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/Download folder.png" alt="alt text">
+
+- Open the `settings.json` file, this file will contain all the insutrctions for the bot, make sure to adjust everything according to your character, if you plan on using the bot with multiple characters than create a `.json` file for each character and name it accordingly, for example `Kanna Settings.json`, `Shade Settings.json`, etc...
+
+- By default the `settings.json` that you download will contain only the default parameters and would look like that:
+
+```
+{
+  "install_origin": "steam",
+  "world": "bera",
+  "PIC": "password",
+  "hold_up": false,
+  "right": "right",
+  "left": "left",
+  "up": "up",
+  "down": "down",
+  "jump": "alt",
+  "hp_potion": "delete",
+  "mana_potion": "insert",
+  "pet_food": "end",
+  "attack": "d",
+  "buffs": [],
+}
+```
+
+- You can add more parameters to customize the bot's behavior, for example add periodical skills, spawn skills, interval between attacks, num. of attacks, and MUCH MORE.
+You can find all the other parameters here: https://github.com/tomergt45/MapleController/blob/main/docs/Controller%20Settings.md
+
+- Make sure to edit all the parameters according to your character keys, and behavior (i.e. animation time, etc...)
+
+2. While using the bot, maplestory MUST be on 800x600 (4:3) windowed
 <img src="https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/Resolution.png" alt="alt text" width="500" height="500">
 
-2. Disable UAC (only if you use the auto restart feature).
+3. Disable UAC (only if you use the auto restart feature).
 This is because when maplestory is launched, you are prompted with an admin privileges dialog, this dialog cannot be accepeted via code so in order to automate the process you'll need to disable it while using the bot.
 
 - Search "UAC" in the windows search
