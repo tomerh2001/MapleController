@@ -81,6 +81,6 @@ This is because when maplestory is launched, you are prompted with an admin priv
 
 - Otherwise, if you only have one `.json` file in that folder then this file will automatically be selected
 
-- After selecting the `.json` file the bot would take control over your PC and start playing MapleStory
+- After selecting the `.json` file the bot will take control over your PC and start playing MapleStory
 
 - You can now go to sleep, good night :)
