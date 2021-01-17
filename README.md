@@ -4,7 +4,7 @@ A less-detectable, easy to use MapleStory bot using fancy computer vision and cl
 **Note: this is not cheats by any means, this bot does not access the game's memory data or files.**
 
 ## Download
-A download link will be added in the near future.
+https://mega.nz/file/c4lSRTxJ#YZZcqvFK_nOaXrVCdNz0AQaoHrQtv1slaSwNbFNYLY8
 
 ## Features
 - Auto crash detection, restart & login
