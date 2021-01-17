@@ -36,10 +36,5 @@
       "key": "a",
       "period": 90
     }
- ],
- "spawn_skills": [
-  {
-    "key": "g"
-  }
-]
+ ]
 }

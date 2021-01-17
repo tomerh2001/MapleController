@@ -36,7 +36,8 @@ hiddenimports = [
     'PIL',
     "mss",
     "cv2",
-    "shutil"
+    "shutil",
+    "re"
 ]
 
 os.makedirs('compile', exist_ok=True)

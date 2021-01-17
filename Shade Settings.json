@@ -8,15 +8,18 @@
   "up": "up",
   "down": "down",
   "jump": "alt",
+  "change_channel_period": 1800,
   "hp_potion": "delete",
   "mana_potion": "delete",
   "pet_food": "end",
   "attack": "d",
+  "attack_repeat": 8,
+  "attack_interval": 0.3,
   "buffs": ["2", "3", "4", "5", "6", "7", "8", "9", "0"],
   "skills": [
     {
       "key": "shift",
-      "period": 5
+      "period": 15
     },
     {
       "key": "c",
@@ -38,7 +41,7 @@
     },
     {
       "key": "PageUp",
-      "period": 2000
+      "period": 3620
     }
  ],
  "spawn_skills": [
