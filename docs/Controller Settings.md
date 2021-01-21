@@ -13,6 +13,7 @@ Name | Type | Description | Default
 `PIC` | String | Your character's PIC (use this only if you want to use the auto restart system) |
 `toggle_pause` | Boolean | The key used to toggle in and out of pause mode | `f5`
 `attempt_restart_after_crash` | Boolean | Indication if to attempt restart when the game crashes | `true`
+`hyper_teleport` | Boolean | Indication if to attempt to teleport back to the training region after death (using an hyper teleport rock) | `true`
 
 ### Movement
 Name | Type | Description | Default
@@ -43,7 +44,6 @@ Name | Type | Description | Default
 ### Misc
 Name | Type | Description | Default
 ---- | ---- | ---- | ----
-`hyper_teleport` | Boolean | Indication if to attempt to teleport back to the training region after death (using an hyper teleport rock) | `true`
 `interact` | String | The key used to activate runes / interact with stuff | `space`
 `world_map` | String | The key used to open the world map | `w`
 
