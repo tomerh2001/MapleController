@@ -5,6 +5,7 @@ Notes:
 1. The names are case sensitive.
 2. An empty default cell means required.
 
+### General
 Name | Type | Description | Default
 ---- | ---- | ---- | ----
 `install_origin` | String | The source of your installation, can be either `steam` or `nexon` |
@@ -12,9 +13,8 @@ Name | Type | Description | Default
 `PIC` | String | Your character's PIC (use this only if you want to use the auto restart system) |
 `toggle_pause` | Boolean | The key used to toggle in and out of pause mode | `f5`
 `attempt_restart_after_crash` | Boolean | Indication if to attempt restart when the game crashes | `true`
-`hyper_teleport` | Boolean | Indication if to attempt to teleport back to the training region after death (using an hyper teleport rock) | `true`
 
-## Movement
+### Movement
 Name | Type | Description | Default
 ---- | ---- | ---- | ----
 `move_mode` | String | The mode of the movement, can be either `hold` or `teleport` | `hold`
@@ -30,15 +30,24 @@ Name | Type | Description | Default
 `teleport_up_period` | Number | The period of which to teleport up (use this only when `move_mode=teleport`) | 10
 `teleport_down_period` | Number | The period of which to teleport down (use this only when `move_mode=teleport`) | 30
 `hold_up` | Boolean | Indication if to keep the up key pressed the entire time | `true`
-`interact` | String | The key used to activate runes / interact with stuff | `space`
 `jump` | String | The key of your character's jump |
 `doublejump` | Boolean | Indication if to double jump (press the jump key twice) everytime you jump | `true`
+
+### Attack
+Name | Type | Description | Default
+---- | ---- | ---- | ----
 `attack` | String | The key of your main attack | 
 `attack_repeat` | Number | The number of attacks (key presses) to perform each time you attack | 5
 `attack_interval` | Number | The delay (in seconds) between each of the key presses | 0.25
+
+### Misc
+Name | Type | Description | Default
+---- | ---- | ---- | ----
+`hyper_teleport` | Boolean | Indication if to attempt to teleport back to the training region after death (using an hyper teleport rock) | `true`
+`interact` | String | The key used to activate runes / interact with stuff | `space`
 `world_map` | String | The key used to open the world map | `w`
 
-## Potions
+### Potions
 Name | Type | Description | Default
 ---- | ---- | ---- | ----
 `hp_potion` | String | The key of your HP potion | `None`
@@ -48,22 +57,22 @@ Name | Type | Description | Default
 `potions_per_use` | Number | The number of potions to take each time (this applies to both HP and MP) | 1
 `delay_per_potion` | Number | Delay (in seconds) per potion take | 0
 `pet_food` | String | The key of your pet food | `None`
+`pet_food_period` | Number | The period of which to take the pet food | 100 (1.4 minutes)
 
-## Channel
+### Channel
 Name | Type | Description | Default
 ---- | ---- | ---- | ----
-`pet_food_period` | Number | The period of which to take the pet food | 100 (1.4 minutes)
 `change_channel_period` | Number | The period of which to change channel | 600 (10 minutes)
 `change_direction_period` | Number | The period of which to change direction | 10 (seconds)
 
-## Buffs
+### Buffs
 Name | Type | Description | Default
 ---- | ---- | ---- | ----
 `buffs` | List\<String\> | A list of strings where each string is a key for a buff | `[]` (empty list)
 `buffs_interval` | Number | The delay (in seconds) between each buff's keypress | 0.5
 `buffs_period` | Number | The period of which to activate the buffs | 50 (seconds)
 
-## Skills
+### Skills
 Name | Type | Description | Default
 ---- | ---- | ---- | ----
 `skills` | List<{}> | A list of dicts where each dict is a skills containing `key`, `period` and (optional) `hold` | `[]`
