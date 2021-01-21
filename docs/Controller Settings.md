@@ -13,7 +13,12 @@ Name | Type | Description | Default
 `toggle_pause` | Boolean | The key used to toggle in and out of pause mode | `f5`
 `attempt_restart_after_crash` | Boolean | Indication if to attempt restart when the game crashes | `true`
 `hyper_teleport` | Boolean | Indication if to attempt to teleport back to the training region after death (using an hyper teleport rock) | `true`
+
+## Movement
+Name | Type | Description | Default
+---- | ---- | ---- | ----
 `move_mode` | String | The mode of the movement, can be either `hold` or `teleport` | `hold`
+`smart_direction` | Boolean | Indicates if the direction of the player is smartly decided (more info below) or is constantly switching between right and left | `true`
 `right` | String | The key of your right movement |
 `left` | String | The key of your left movement |
 `up` | String | The key of your up movement |
@@ -28,7 +33,14 @@ Name | Type | Description | Default
 `interact` | String | The key used to activate runes / interact with stuff | `space`
 `jump` | String | The key of your character's jump |
 `doublejump` | Boolean | Indication if to double jump (press the jump key twice) everytime you jump | `true`
+`attack` | String | The key of your main attack | 
+`attack_repeat` | Number | The number of attacks (key presses) to perform each time you attack | 5
+`attack_interval` | Number | The delay (in seconds) between each of the key presses | 0.25
 `world_map` | String | The key used to open the world map | `w`
+
+## Potions
+Name | Type | Description | Default
+---- | ---- | ---- | ----
 `hp_potion` | String | The key of your HP potion | `None`
 `min_potion_hp` | Number | Minimum HP required to take a potion in precent | 50
 `mana_potion` | String | The key of your MP potion | `None`
@@ -36,16 +48,24 @@ Name | Type | Description | Default
 `potions_per_use` | Number | The number of potions to take each time (this applies to both HP and MP) | 1
 `delay_per_potion` | Number | Delay (in seconds) per potion take | 0
 `pet_food` | String | The key of your pet food | `None`
+
+## Channel
+Name | Type | Description | Default
+---- | ---- | ---- | ----
 `pet_food_period` | Number | The period of which to take the pet food | 100 (1.4 minutes)
 `change_channel_period` | Number | The period of which to change channel | 600 (10 minutes)
 `change_direction_period` | Number | The period of which to change direction | 10 (seconds)
-`smart_direction` | Boolean | Indicates if the direction of the player is smartly decided (more info below) or is constantly switching between right and left | `true`
-`attack` | String | The key of your main attack | 
-`attack_repeat` | Number | The number of attacks (key presses) to perform each time you attack | 5
-`attack_interval` | Number | The delay (in seconds) between each of the key presses | 0.25
+
+## Buffs
+Name | Type | Description | Default
+---- | ---- | ---- | ----
 `buffs` | List\<String\> | A list of strings where each string is a key for a buff | `[]` (empty list)
 `buffs_interval` | Number | The delay (in seconds) between each buff's keypress | 0.5
 `buffs_period` | Number | The period of which to activate the buffs | 50 (seconds)
+
+## Skills
+Name | Type | Description | Default
+---- | ---- | ---- | ----
 `skills` | List<{}> | A list of dicts where each dict is a skills containing `key`, `period` and (optional) `hold` | `[]`
 `skills_interval` | Number | The delay between skill keypress | 0.25
 `spawn_skills` | List<{}> | A list of skills to activate on spawn (death respawn or crash) | `[]`
