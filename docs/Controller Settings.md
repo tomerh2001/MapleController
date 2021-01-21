@@ -83,8 +83,8 @@ Name | Type | Description | Default
 ### Misc skills
 Name | Type | Description | Default
 ---- | ---- | ---- | ----
-`ascend` | Key used to quickly ascend to the platform above you (For example the skill `Rope Lift`) | `None`
-`ascend_period` | The period of which to ascend upwards | `-1`
+`ascend` | String | Key used to quickly ascend to the platform above you (For example the skill `Rope Lift`) | `None`
+`ascend_period` | Number | The period of which to ascend upwards | -1 (seconds)
 
 # Move mode
 Move mode dictates the mode of which to move the player, currently the available modes are: 
