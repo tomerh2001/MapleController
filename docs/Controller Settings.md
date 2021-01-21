@@ -80,6 +80,12 @@ Name | Type | Description | Default
 `spawn_skills` | List<{}> | A list of skills to activate on spawn (death respawn or crash) | `[]`
 `spawn_skills_interval` | Number | The delay between skill keypresses | 0.25
 
+### Misc skills
+Name | Type | Description | Default
+---- | ---- | ---- | ----
+`ascend` | Key used to quickly ascend to the platform above you (For example the skill `Rope Lift`) | `None`
+`ascend_period` | The period of which to ascend upwards | `-1`
+
 # Move mode
 Move mode dictates the mode of which to move the player, currently the available modes are: 
 - `hold`: Leaving the direction key pressed until direction change to keep the player constantly moving.
