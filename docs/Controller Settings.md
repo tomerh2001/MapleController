@@ -78,7 +78,7 @@ Name | Type | Description | Default
 `skills` | List<{}> | A list of dicts where each dict is a skills containing `key`, `period` and (optional) `hold` | `[]`
 `skills_interval` | Number | The delay between skill keypress | 0.25
 `spawn_skills` | List<{}> | A list of skills to activate on spawn (death respawn or crash) | `[]`
-`spawn_skills_interval` | Number | The delay between skill keypress | 0.25
+`spawn_skills_interval` | Number | The delay between skill keypresses | 0.25
 
 # Move mode
 Move mode dictates the mode of which to move the player, currently the available modes are: 
