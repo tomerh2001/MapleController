@@ -1,0 +1,12 @@
+compile
+compile/*
+deaths
+deaths/*
+log.txt
+*.json
+__pycache__
+__pycache__/*
+.ipynb_checkpoints
+.ipynb_checkpoints/*
+overlay
+overlay/*
