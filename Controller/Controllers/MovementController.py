@@ -176,3 +176,5 @@ class MovementController(GameController):
             self.doublejump()
         else:
             self.jump()
+
+controller = MovementController("Shade Settings.json", resources_path="../Controller/refs")

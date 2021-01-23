@@ -9,7 +9,6 @@ pyautogui.FAILSAFE = False
 nexon_launch_target = "nxl://launch/10100"
 steam_launch_target = "steam://rungameid/216150"
 
-
 class BaseController(SettingsController):
     def __init__(self, settings_path, log_path='log.txt'):
         super().__init__(settings_path)

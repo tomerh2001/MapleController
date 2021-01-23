@@ -63,6 +63,8 @@ def get_maple_windows():
 def grab_maple(focus=True):
     wins = get_maple_windows()
     box = wins[0].box
+    if len(wins) == 0:
+        return None
 
     if focus:
         focus_maple()

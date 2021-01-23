@@ -298,5 +298,4 @@ while 1:
             break
     except:
         import traceback
-
         log(''.join(traceback.format_exception(*sys.exc_info())), console=True)

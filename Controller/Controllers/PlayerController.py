@@ -10,7 +10,7 @@ from Controller.Controllers.PotionsController import PotionsController
 from Controller.Controllers.MovementController import MovementController
 
 
-class PlayerController (MovementController, PotionsController):
+class PlayerController(MovementController, PotionsController):
     def __init__(self, settings_path, log_path='log.txt', resources_path="refs", deathsfolder='deaths'):
         PotionsController.__init__(self, settings_path, log_path=log_path)
         MovementController.__init__(self, settings_path, log_path=log_path, resources_path=resources_path)
@@ -183,62 +183,141 @@ class PlayerController (MovementController, PotionsController):
         player = self.get_player_position(.8)
         rune = pyautogui.locate(self.get_resource_path("mini map/Rune.png"), self.frame_pil)
 
-        # Help function
-        def filter_rune_results(results, tag):
-            results = list(results)
-            if len(results) == 0: return []
-            current_result = results[0]
-            yield (tag, current_result.left)
-            for result in results:
-                if not (current_result.left - 5 <= result.left <= current_result.left + 5):
-                    current_result = result
-                    yield (tag, current_result.left)
-
         if player and rune:  # If player and rune are visible in the minimap
-            log('Attempting to activate rune')
-            if rune.top - 3 <= player.top <= rune.top + 3:  # Rune is reachable by the player
-                direction = -1 if player.left - rune.left > 0 else 1
-                self.release_move()
-                self.lock_move()
-                self.set_move_direction(direction, force_mode=MapleMoveMode.HOLD)
+            reached_rune = self.reach_rune()
+
+            if reached_rune:
+                # Maximum of 10 seconds to attempt activating the rune
                 self.restart_cooldown('attempt rune')
-                while not self.check_cooldown('attempt rune',
-                                              10) and not self.pause_state:  # Maximum of 10 seconds to attempt activating the rune
+                while not self.check_cooldown('attempt rune', 30) and not self.pause_state:
                     log('Moving towards rune - ' + str(abs(player.left - rune.left)) + 'px left')
                     self.check_health_and_heal()
                     self.release_move()
                     self.move()  # Move towards rune
 
-                    player = self.get_player_position()
-                    if not player:
-                        break
-                    elif rune.left - 3 <= player.left <= rune.left + 3:  # Check if player reached rune
-                        sleep(1.5)
-                        self.interact()
-
-                        sleep(.5)
-                        self.grab_frame(focus=False)
-
-                        ups = filter_rune_results(locate_all(self.get_resource_path('rune keys/Up.png'), self.frame_pil, confidence=.7),
-                                                  'up')
-                        downs = filter_rune_results(
-                            locate_all(self.get_resource_path('rune keys/Down.png'), self.frame_pil, confidence=.7), 'down')
-                        rights = filter_rune_results(
-                            locate_all(self.get_resource_path('rune keys/Right.png'), self.frame_pil, confidence=.7), 'right')
-                        lefts = filter_rune_results(
-                            locate_all(self.get_resource_path('rune keys/Left.png'), self.frame_pil, confidence=.7), 'left')
-
-                        for key, x in sorted(itertools.chain(ups, downs, rights, lefts), key=lambda x: x[1]):
-                            press_and_release(key)
-                            sleep(.25)
-
+                    activated = self.activate_rune(rune)
+                    if activated:
                         log('Activated rune')
-                        self.unlock_move()
-                        return True
-                self.unlock_move()
-            else:
-                log('Rune is unreachable by the player')
+                    break
+
+            self.unlock_move()
         return False
+
+    def reach_rune(self):
+        log('Attempting to reach rune')
+
+        player = self.get_player_position()
+        if not player:
+            return False
+        rune = pyautogui.locate(self.get_resource_path("mini map/Rune.png"), self.frame_pil)
+        direction = -1 if player.left - rune.left > 0 else 1
+
+        self.release_move()
+        self.lock_move()
+        self.set_move_direction(direction, force_mode=MapleMoveMode.HOLD)
+
+        # Maximum of 10 seconds to reach rune x axis
+        self.restart_cooldown('reach rune x axis')
+
+        while not self.check_cooldown('reach rune x axis', 15) and not self.pause_state:
+            self.check_health_and_heal()
+
+            player = self.get_player_position()
+
+            if not player:
+                continue
+
+            currentDirection = -1 if player.left - rune.left > 0 else 1
+
+            if currentDirection == direction:
+                self.press_move()
+                if self.doublejump_state:
+                    self.doublejump()
+                    continue
+            else:
+                self.unlock_move()
+                self.release_move()
+                self.set_move_direction(currentDirection, force_mode=MapleMoveMode.HOLD)
+                self.press_move()
+
+                while not self.check_cooldown('reach rune x axis', 15) and not self.pause_state:
+                    self.check_health_and_heal()
+                    player = self.get_player_position()
+
+                    if abs(player.left - rune.left) <= 3:
+                        self.release_move()
+                        break
+
+            player = self.get_player_position()
+            if player.top > rune.top: # Player below rune
+                while not self.check_cooldown('reach rune x axis', 15) and not self.pause_state:
+                    self.check_health_and_heal()
+                    player = self.get_player_position()
+
+                    if not player:
+                        continue
+
+                    if rune.top - 3 <= player.top <= rune.top + 3:  # Check if player reached rune
+                        return True
+
+                    self.ascend()
+                    sleep(.5)
+            else: # Player above rune
+                while not self.check_cooldown('reach rune x axis', 15) and not self.pause_state:
+                    self.check_health_and_heal()
+                    player = self.get_player_position()
+
+                    if not player:
+                        continue
+
+                    if rune.top - 3 <= player.top <= rune.top + 3:  # Check if player reached rune
+                        return True
+
+                    press_and_release(self.down_key + "+" + self.jump_key)
+                    sleep(.5)
+
+        return False
+
+    def activate_rune(self, rune):
+        log('Attempting to activate rune')
+
+        # Help function
+        def filter_rune_results(results):
+            results = list(results)
+            if len(results) == 0: return []
+            current_result = results[0]
+            yield (current_result[0], current_result[1].left)
+            for result in results:
+                if not (current_result[1].left - 5 <= result[1].left <= current_result[1].left + 5):
+                    current_result = result
+                    yield (current_result[0], current_result[1].left)
+
+        # REMOVE ME ^^
+
+        player = self.get_player_position()
+
+        if not player:
+            return False
+        elif rune.left - 3 <= player.left <= rune.left + 3:  # Check if player reached rune
+            sleep(1.5)
+            self.interact()
+
+            sleep(.5)
+            self.grab_frame(focus=False)
+
+            rune_keys_pil = self.frame_pil.crop((185, 208, 531, 280))
+            keys = locate_all_multiple_images(rune_keys_pil,
+                                       self.get_resource_path('rune keys/'),
+                                       ["Up.png", "Down.png", "Right.png", "Left.png"],
+                                       confidence=.7,
+                                       key=lambda x: x[1].left)
+            keys = filter_rune_results(keys)
+
+            for key, x in keys:
+                press_and_release(key)
+                sleep(.25)
+
+            return True
 
     def mark_world_map_location(self):
         self.focus_maple()
@@ -290,6 +369,3 @@ class PlayerController (MovementController, PotionsController):
                     raise Exception('Faild respawning after death')
         else:
             sys.exit()
-
-controller = PlayerController("Shade Settings.json", resources_path="../Controller/refs")
-
