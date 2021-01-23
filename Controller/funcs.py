@@ -164,3 +164,16 @@ def clearlog(path='log.txt'):
     with open(path, 'w') as fd:
         fd.seek(0)
         fd.truncate()
+
+def pretty_delta(delta, granularity=2):
+    result = []
+    intervals = (('weeks', 604800), ('days', 86400), ('hours', 3600), ('minutes', 60), ('seconds', 1))
+    seconds = delta.seconds
+    for name, count in intervals:
+        value = seconds // count
+        if value:
+            seconds -= value * count
+            if value == 1:
+                name = name.rstrip('s')
+            result.append("{} {}".format(value, name))
+    return ', '.join(result[:granularity])

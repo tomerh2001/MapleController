@@ -1,20 +1,15 @@
-# In[14]:
 import collections
-import os
 import sys
-import time
-import traceback
-import numpy as np
+
+from Controller.MapleMoveMode import MapleMoveMode
 
 sys.path.append('..')
 sys.path.append('..\\Dependencies')
 sys.path.append('..\\Controller')
 
-from Controller.BaseController import *
 from Dependencies import admin
-
-# In[3]:
-
+from Controller.Controllers.PlayerController import PlayerController
+from Controller.funcs import *
 
 print("Created by tomergt45 (Tomergt89@gmail.com or github.com/tomergt45) ")
 
@@ -27,8 +22,6 @@ print("Note: You must play on windowed 800x600 (4:3)")
 print(
     "Note: You must change your windows UAC settings to 'Never Notify' (don't forget to turn it back after using the bot!)")
 
-
-# In[4]:
 
 def get_json_files(path='.'):
     return [f for f in os.listdir(".") if f.endswith(".json")]
@@ -47,9 +40,7 @@ else:
     selection = int(input("I select: "))
     settingsPath = files[selection - 1]
 
-controller = MapleController(settingsPath)
-
-# In[4]:
+controller = PlayerController(settingsPath, resources_path="../Controller/refs")
 
 start_time = datetime.datetime.now()
 maxlen = 10
@@ -59,25 +50,8 @@ history = {
 }
 controller.restart_cooldown('change_channel')
 
-
-# In[5]:
 def clear():
-    s = os.system("cls")
-
-
-def pretty_delta(delta, granularity=2):
-    result = []
-    intervals = (('weeks', 604800), ('days', 86400), ('hours', 3600), ('minutes', 60), ('seconds', 1))
-    seconds = delta.seconds
-    for name, count in intervals:
-        value = seconds // count
-        if value:
-            seconds -= value * count
-            if value == 1:
-                name = name.rstrip('s')
-            result.append("{} {}".format(value, name))
-    return ', '.join(result[:granularity])
-
+    os.system("cls")
 
 def refresh_exp_history(current_exp, t_diff):
     if current_exp < history.get('last_exp', current_exp):
@@ -88,7 +62,6 @@ def refresh_exp_history(current_exp, t_diff):
     current_exp_per_hour = current_exp_per_minute * 60
     history['exp_per_minute_history'].append(current_exp_per_minute)
     history['last_exp'] = current_exp
-
 
 def verbose():
     if controller.check_black_screen():
@@ -122,10 +95,6 @@ def verbose():
     Estimated time till rankup:\t {estimated_time_rankup}
     """)
     history['last_verbose'] = time.time()
-
-
-# In[6]:
-
 
 def login_bot():
     close_news = select_character = select_world = False
@@ -183,10 +152,6 @@ def login_bot():
                     controller.use_spawn_skills()
                 return True
     return False
-
-
-# In[7]:
-
 
 def afk_bot():
     if controller.hold_up_state:
@@ -300,8 +265,6 @@ def afk_bot():
     if controller.move_mode == MapleMoveMode.HOLD:
         controller.release_move()
 
-
-# In[8]:
 while 1:
     if controller.pause_state:
         continue
@@ -329,6 +292,6 @@ while 1:
                 console=True)
             break
     except:
-        import tracebackddd
+        import traceback
 
         log(''.join(traceback.format_exception(*sys.exc_info())), console=True)

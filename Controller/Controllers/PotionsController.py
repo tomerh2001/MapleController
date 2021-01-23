@@ -1,12 +1,10 @@
-import numpy as np
-
 from Controller.Controllers.BaseController import BaseController
 from Controller.funcs import *
 
 
 class PotionsController(BaseController):
-    def __init__(self, settings_path, logpath='log.txt'):
-        super().__init__(settings_path, logpath)
+    def __init__(self, settings_path, log_path='log.txt'):
+        super().__init__(settings_path, log_path)
 
         self.hp_potion_key = self.get('hp_potion', None)
         self.min_potion_hp = self.get('min_potion_hp', 50)
@@ -78,5 +76,3 @@ class PotionsController(BaseController):
 
     def feed_pet(self):
         press_and_release(self.pet_food_key)
-
-controller = PotionsController("Shade Settings.json")
