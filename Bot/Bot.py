@@ -192,6 +192,7 @@ def afk_bot():
             # Attempt to activate rune only if not on cooldown
             if not controller.check_rune_cooldown_buff() and controller.attempt_rune():
                 pass
+
             # Change channel if:
             # Faild to activate rune / Rune is blocking EXP / Another player in map / Channel timeout exceeded
             elif controller.check_channel():
@@ -234,6 +235,10 @@ def afk_bot():
                 controller.restart_cooldown('period hp')
             if controller.pause_state:
                 continue
+
+            if controller.ascend_key and controller.check_cooldown("ascend", controller.ascend_period):
+                controller.restart_cooldown("ascend")
+                controller.ascend()
 
             if controller.move_mode == MapleMoveMode.TELEPORT:
                 controller.grab_frame()

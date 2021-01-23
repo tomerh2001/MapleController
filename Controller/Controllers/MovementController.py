@@ -36,6 +36,8 @@ class MovementController(GameController):
         # Default variables
         self.move_key = self.teleport_right_key if self.move_mode == MapleMoveMode.TELEPORT else self.right_key
         self.move_locked = False
+        self.moving = False
+
 
     def jump(self):
         press_and_release(self.jump_key)
@@ -93,13 +95,17 @@ class MovementController(GameController):
 
     def press_move(self):
         press(self.move_key)
+        self.moving = True
 
     def release_move(self):
         self.focus_maple()
         release(self.move_key)
+        self.moving = False
 
     def move(self):
+        self.moving = True
         press_and_release(self.move_key)
+        self.moving = False
 
     def toggle_move_direction(self):
         if self.move_mode == MapleMoveMode.HOLD:
@@ -137,7 +143,7 @@ class MovementController(GameController):
             self.restart_cooldown("change_direction")
 
     def change_direction(self):
-        moving = keyboard.is_pressed(self.move_key)
+        moving = self.moving
         if moving and self.move_mode == MapleMoveMode.HOLD:
             self.release_move()
         self.change_move_direction()
@@ -148,7 +154,7 @@ class MovementController(GameController):
         self.grab_frame()
         try:
             portalPositions = [portalPos.left for portalPos in
-                               pyautogui.locateAll('./refs/mini map/Portal.png', self.frame_pil, confidence=.75)]
+                               pyautogui.locateAll(self.get_resource_path('mini map/Portal.png'), self.frame_pil, confidence=.75)]
             x1, x2 = min(portalPositions), max(portalPositions)
             xDiff = x2 - x1
             xMiddle = x1 + xDiff / 2

@@ -82,7 +82,6 @@ class PlayerController (MovementController, PotionsController):
             press_and_release(key)
 
         if self.move_mode == MapleMoveMode.HOLD:
-            self.check_direction_and_change()
             self.press_move()
 
     def use_skill(self, skill_settings):
@@ -293,3 +292,4 @@ class PlayerController (MovementController, PotionsController):
             sys.exit()
 
 controller = PlayerController("Shade Settings.json", resources_path="../Controller/refs")
+
