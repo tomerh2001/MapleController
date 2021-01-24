@@ -94,4 +94,4 @@ Move mode dictates the mode of which to move the player, currently the available
 # Smart direction
 When smart direction is enabled the player will be constantly guided into the center of the map, this feature will overwrite `change_direction_period` to 0.
 
-![alt text](https://raw.githubusercontent.com/tomergt45/MapleController/main/docs/images/Smart%20direction%20example.png)
+![alt text](https://raw.githubusercontent.com/tomergt45/MapleController/main/Controller/docs/images/Smart%20direction%20example.png)
