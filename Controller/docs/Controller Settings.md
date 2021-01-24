@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Settings.json
 The `settings.json` file is used to contain the settings of the `MapleController` class, below you can find all the optional parameters that can be used within it.
 
