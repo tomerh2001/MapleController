@@ -51,6 +51,14 @@ class GameController(BaseController):
         self.grab_frame()
         return locate(self.get_resource_path('mini map/Player.png'), self.frame_pil, confidence=confidence)
 
+    def get_world_button(self):
+        self.grab_frame()
+        return locate(self.get_resource_path("mini map/World.png"), self.frame_pil)
+
+    def get_npc_button(self):
+        self.grab_frame()
+        return locate(self.get_resource_path("mini map/Npc.png"), self.frame_pil)
+
     def click_ok_button(self, duration=1):
         self.grab_frame()
         button = locate_on_screen(self.get_resource_path('buttons/Ok.png'), confidence=.95)

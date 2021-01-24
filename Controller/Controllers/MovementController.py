@@ -38,7 +38,6 @@ class MovementController(GameController):
         self.move_locked = False
         self.moving = False
 
-
     def jump(self):
         press_and_release(self.jump_key)
 

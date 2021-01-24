@@ -1,5 +1,13 @@
 import os, shutil
-from distutils.dir_util import copy_tree
+import sys
+
+sys.path.append('..')
+sys.path.append('..\\Dependencies')
+from Dependencies import admin
+
+if not admin.isUserAdmin():
+    admin.runAsAdmin(wait=False)
+    sys.exit()
 
 hiddenimports = [
     'numpy',

@@ -1,4 +1,3 @@
-import itertools
 import re
 import sys
 
@@ -249,7 +248,7 @@ class PlayerController(MovementController, PotionsController):
                         break
 
             player = self.get_player_position()
-            if player.top > rune.top: # Player below rune
+            if player.top > rune.top:  # Player below rune
                 while not self.check_cooldown('reach rune x axis', 15) and not self.pause_state:
                     self.check_health_and_heal()
                     player = self.get_player_position()
@@ -262,7 +261,7 @@ class PlayerController(MovementController, PotionsController):
 
                     self.ascend()
                     sleep(.5)
-            else: # Player above rune
+            else:  # Player above rune
                 while not self.check_cooldown('reach rune x axis', 15) and not self.pause_state:
                     self.check_health_and_heal()
                     player = self.get_player_position()
@@ -288,36 +287,40 @@ class PlayerController(MovementController, PotionsController):
             current_result = results[0]
             yield (current_result[0], current_result[1].left)
             for result in results:
-                if not (current_result[1].left - 5 <= result[1].left <= current_result[1].left + 5):
+                if not (current_result[1].left - 10 <= result[1].left <= current_result[1].left + 10):
                     current_result = result
                     yield (current_result[0], current_result[1].left)
-
-        # REMOVE ME ^^
 
         player = self.get_player_position()
 
         if not player:
             return False
         elif rune.left - 3 <= player.left <= rune.left + 3:  # Check if player reached rune
-            sleep(1.5)
-            self.interact()
+            self.restart_cooldown('activate rune')
+            while not self.check_cooldown('activate rune', 15) and not self.pause_state:
+                sleep(1.5)
+                self.interact()
 
-            sleep(.5)
-            self.grab_frame(focus=False)
+                sleep(.5)
+                self.grab_frame(focus=False)
 
-            rune_keys_pil = self.frame_pil.crop((185, 208, 531, 280))
-            keys = locate_all_multiple_images(rune_keys_pil,
-                                       self.get_resource_path('rune keys/'),
-                                       ["Up.png", "Down.png", "Right.png", "Left.png"],
-                                       confidence=.7,
-                                       key=lambda x: x[1].left)
-            keys = filter_rune_results(keys)
+                rune_keys_pil = self.frame_pil.crop((150, 150, 650, 400))
+                keys = locate_all_multiple_images(rune_keys_pil,
+                                                  self.get_resource_path('rune keys/'),
+                                                  ["Up.png", "Down.png", "Right.png", "Left.png"],
+                                                  confidence=.7,
+                                                  key=lambda x: x[1].left)
 
-            for key, x in keys:
-                press_and_release(key)
-                sleep(.25)
+                keys = list(filter_rune_results(keys))
 
-            return True
+                if len(keys) == 0:
+                    return True
+
+                for key, x in keys:
+                    press_and_release(key)
+                    sleep(.25)
+
+            return False
 
     def mark_world_map_location(self):
         self.focus_maple()
@@ -369,3 +372,5 @@ class PlayerController(MovementController, PotionsController):
                     raise Exception('Faild respawning after death')
         else:
             sys.exit()
+
+controller = PlayerController("Shade Settings.json", resources_path="../Controller/refs")
