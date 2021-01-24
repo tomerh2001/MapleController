@@ -149,19 +149,22 @@ class MovementController(GameController):
         if moving and self.move_mode == MapleMoveMode.HOLD:
             self.press_move()
 
-    def get_smart_direction(self, mapPercent=.25):
-        self.grab_frame()
+    def get_smart_direction(self, winPrecent=.5):
+        button = self.get_npc_button()
+        if not button:
+            button = self.get_world_button()
+
+        max_left = button.left + button.width + 10
+        center_left = max_left // 2
+        win_size = round(center_left * winPrecent)
+        xMin, xMax = center_left - win_size, center_left + win_size
+
         try:
-            portalPositions = [portalPos.left for portalPos in
-                               pyautogui.locateAll(self.get_resource_path('mini map/Portal.png'), self.frame_pil, confidence=.75)]
-            x1, x2 = min(portalPositions), max(portalPositions)
-            xDiff = x2 - x1
-            xMiddle = x1 + xDiff / 2
-            winSize = xDiff * mapPercent
-            xMin, xMax = int(xMiddle - winSize), int(xMiddle + winSize)
-            playerX = self.get_player_position().left
-            if not (xMin <= playerX <= xMax):
-                return -1 if xMiddle - playerX < 0 else 1
+            player_left = self.get_player_position().left
+            if player_left < xMin:
+                return 1
+            elif player_left > xMax:
+                return -1
             else:
                 return 0
         except:
