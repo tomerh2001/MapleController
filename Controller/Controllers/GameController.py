@@ -16,7 +16,7 @@ class GameController(BaseController):
         # Default variables
         self.resources_path = pathlib.Path(resources_path)
         if not self.resources_path.exists():
-            raise Exception("Unable to locate the resources folder at '" + resources_path + "'")
+            raise Exception("Unable to locate the refs folder at '" + resources_path + "'")
 
     def select_world(self, world, channel=1):
         self.grab_frame()
@@ -47,9 +47,34 @@ class GameController(BaseController):
                 raise Exception('Faild entering PIC, unable to find the key for `{}`.'.format(key))
         press_and_release('enter')
 
-    def get_player_position(self, confidence=.9):
+    def get_player_position(self, confidence=.9, minimap=None):
+        if not minimap:
+            minimap = self.get_mini_map()
+        return locate(self.get_resource_path('mini map/Player.png'), minimap, confidence=confidence)
+
+    def get_rune_position(self, confidence=.9, minimap=None):
+        if not minimap:
+            minimap = self.get_mini_map()
+        return locate(self.get_resource_path('mini map/Rune.png'), minimap, confidence=confidence)
+
+    def get_mini_map(self, padding=5, confidence=.98):
         self.grab_frame()
-        return locate(self.get_resource_path('mini map/Player.png'), self.frame_pil, confidence=confidence)
+
+        left_edge = locate(self.get_resource_path("mini map/Left edge.png"), self.frame_pil, confidence=confidence)
+        right_edge = locate(self.get_resource_path("mini map/Right edge.png"), self.frame_pil, confidence=confidence)
+
+        try:
+            return self.frame_pil.crop((left_edge.left, left_edge.top, right_edge.left + padding, right_edge.top + padding))
+        except:
+            print("Faild to find minimap")
+            button = self.get_npc_button()
+            if not button:
+                button = self.get_world_button()
+            if button:
+                width, height = self.frame_pil.size
+                return self.frame_pil.crop((0, 0, button.left + button.width + 10, height))
+            else:
+                return self.frame_pil
 
     def get_world_button(self):
         self.grab_frame()
@@ -137,9 +162,10 @@ class GameController(BaseController):
         self.grab_frame()
         return self.check_frame_for_resource("bars/EXP bar.png")
 
-    def check_other_player_in_map(self):
-        self.grab_frame()
-        return self.check_frame_for_resource("mini map/Other player.png")
+    def check_other_player_in_map(self, minimap=None):
+        if not minimap:
+            minimap = self.get_mini_map()
+        return locate(self.get_resource_path("mini map/Other player.png"), minimap)
 
     def check_no_potion_curse(self):
         self.grab_frame()
@@ -169,3 +195,4 @@ class GameController(BaseController):
         return self.check_rune_message_open() \
                or self.check_other_player_in_map() \
                or self.check_cooldown('change_channel', self.channel_period)
+

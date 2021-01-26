@@ -37,6 +37,7 @@ class MovementController(GameController):
         self.move_key = self.teleport_right_key if self.move_mode == MapleMoveMode.TELEPORT else self.right_key
         self.move_locked = False
         self.moving = False
+        self.last_smart_direction = None
 
     def jump(self):
         press_and_release(self.jump_key)
@@ -119,6 +120,7 @@ class MovementController(GameController):
             self.move_key = self.left_key if direction_num == -1 else self.right_key
         elif self.move_mode == MapleMoveMode.TELEPORT or force_mode == MapleMoveMode.TELEPORT:
             self.move_key = self.teleport_left_key if direction_num == -1 else self.teleport_right_key
+        log("Move direction key changed to: " + self.move_key)
 
     def change_move_direction(self):
         if self.smart_direction_state:
@@ -137,6 +139,7 @@ class MovementController(GameController):
         return self.move_locked
 
     def check_direction_and_change(self):
+        log("Checking direction")
         if self.check_cooldown("change_direction", self.direction_period) and not self.is_move_locked():
             self.change_direction()
             self.restart_cooldown("change_direction")
@@ -150,25 +153,28 @@ class MovementController(GameController):
             self.press_move()
 
     def get_smart_direction(self, winPrecent=.5):
-        button = self.get_npc_button()
-        if not button:
-            button = self.get_world_button()
+        minimap = self.get_mini_map()
 
-        max_left = button.left + button.width + 10
+        max_left = minimap.size[0]
         center_left = max_left // 2
         win_size = round(center_left * winPrecent)
         xMin, xMax = center_left - win_size, center_left + win_size
 
         try:
-            player_left = self.get_player_position().left
+            player_left = self.get_player_position(minimap=minimap).left
+
             if player_left < xMin:
-                return 1
+                direction = 1
             elif player_left > xMax:
-                return -1
+                direction = -1
             else:
                 return 0
         except:
+            print("Couldn't find player")
             return np.random.choice([-1, 1])
+
+        self.last_smart_direction = direction
+        return direction
 
     def ascend(self):
         press_and_release(self.ascend_key)
@@ -179,4 +185,3 @@ class MovementController(GameController):
         else:
             self.jump()
 
-controller = MovementController("Shade Settings.json", resources_path="../Controller/refs")

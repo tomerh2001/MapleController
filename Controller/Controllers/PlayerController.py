@@ -178,10 +178,10 @@ class PlayerController(MovementController, PotionsController):
                         return True
 
     def attempt_rune(self):
-        self.grab_frame()
-        player = self.get_player_position(.8)
-        rune = pyautogui.locate(self.get_resource_path("mini map/Rune.png"), self.frame_pil)
-
+        minimap = self.get_mini_map()
+        player = self.get_player_position(.8, minimap=minimap)
+        rune = self.get_rune_position(minimap=minimap)
+        
         if player and rune:  # If player and rune are visible in the minimap
             reached_rune = self.reach_rune()
 
@@ -205,10 +205,11 @@ class PlayerController(MovementController, PotionsController):
     def reach_rune(self):
         log('Attempting to reach rune')
 
-        player = self.get_player_position()
+        minimap = self.get_mini_map()
+        player = self.get_player_position(minimap=minimap)
         if not player:
             return False
-        rune = pyautogui.locate(self.get_resource_path("mini map/Rune.png"), self.frame_pil)
+        rune = self.get_rune_position(minimap=minimap)
         direction = -1 if player.left - rune.left > 0 else 1
 
         self.release_move()
@@ -248,6 +249,7 @@ class PlayerController(MovementController, PotionsController):
                         break
 
             player = self.get_player_position()
+
             if player.top > rune.top:  # Player below rune
                 while not self.check_cooldown('reach rune x axis', 15) and not self.pause_state:
                     self.check_health_and_heal()

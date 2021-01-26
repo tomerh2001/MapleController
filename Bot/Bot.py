@@ -40,7 +40,14 @@ else:
     selection = int(input("I select: "))
     settingsPath = files[selection - 1]
 
-controller = PlayerController(settingsPath, resources_path="../Controller/refs")
+if os.path.isdir("refs"):
+    resources_path = "refs"
+elif os.path.isdir("../Controller/refs"):
+    resources_path = "../Controller/refs"
+else:
+    raise Exception("Unable to locate the refs directory.")
+
+controller = PlayerController(settingsPath, resources_path=resources_path)
 
 start_time = datetime.datetime.now()
 maxlen = 10
@@ -216,6 +223,7 @@ def afk_bot():
                     controller.press_move()
 
             while controller.check_no_potion_curse():
+                controller.check_direction_and_change()
                 controller.jump_or_doublejump()
                 controller.attack()
                 controller.check_direction_and_change()
@@ -252,6 +260,7 @@ def afk_bot():
                     sleep(.25)
                 controller.move()
 
+            controller.check_direction_and_change()
             controller.jump_or_doublejump()
             controller.check_health_and_heal()
             controller.use_uncooldowned_skills()
