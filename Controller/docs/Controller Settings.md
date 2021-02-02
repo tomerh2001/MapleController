@@ -33,6 +33,7 @@ Name | Type | Description | Default
 `hold_up` | Boolean | Indication if to keep the up key pressed the entire time | `true`
 `jump` | String | The key of your character's jump |
 `doublejump` | Boolean | Indication if to double jump (press the jump key twice) everytime you jump | `true`
+`change_direction_period` | Number | The period of which to change direction | 10 (seconds)
 
 ### Attack
 Name | Type | Description | Default
@@ -63,7 +64,6 @@ Name | Type | Description | Default
 Name | Type | Description | Default
 ---- | ---- | ---- | ----
 `change_channel_period` | Number | The period of which to change channel | 600 (10 minutes)
-`change_direction_period` | Number | The period of which to change direction | 10 (seconds)
 
 ### Buffs
 Name | Type | Description | Default
